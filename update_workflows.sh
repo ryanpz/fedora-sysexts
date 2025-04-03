@@ -31,6 +31,65 @@ main() {
         'Fedora Kinoite'
 }
 
+ignored_sysexts() {
+    declare -a ignored=(
+        ".github"
+        ".workflow-templates"
+        "1password-cli"
+        "1password-gui"
+        "bitwarden"
+        "chromium"
+        "cockpit"
+        "compsize"
+        "cri-o-1.29"
+        "cri-o-1.30"
+        "cri-o-1.31"
+        "cri-o-1.32"
+        "emacs"
+        "firefox"
+        "fuse2"
+        "gdb"
+        "google-chrome"
+        "incus"
+        "iwd"
+        "keepassxc"
+        "krb5-workstation"
+        "kubernetes-1.29"
+        "kubernetes-1.30"
+        "kubernetes-1.31"
+        "kubernetes-1.32"
+        "kubernetes-cri-o-1.29"
+        "kubernetes-cri-o-1.30"
+        "kubernetes-cri-o-1.31"
+        "kubernetes-cri-o-1.32"
+        "lact-libadwaita"
+        "lact"
+        "libvirtd"
+        "mesa-git"
+        "microsoft-edge"
+        "monitoring"
+        "mpd"
+        "mullvad-vpn"
+        "openh264"
+        "openssl"
+        "python"
+        "semanage"
+        "steam"
+        "strace"
+        "tree"
+        "vscode"
+        "vscodium"
+        "wasmtime"
+        "wireguard-tools"
+        "wireshark"
+        "zoxide"
+    )
+
+    pat=$(printf "|^%s$" "${ignored[@]}")
+    pat="${pat:1}" # remove leading separator
+    echo "$pat"
+}
+
 generate() {
     local -r image="${1}"
     local -r release="${2}"
@@ -44,7 +103,7 @@ generate() {
 
     # Get the list of sysexts for a given target
     sysexts=()
-    for s in $(git ls-tree -d --name-only HEAD | grep -Ev ".github|templates"); do
+    for s in $(git ls-tree -d --name-only HEAD | grep -Ev "$(ignored_sysexts)"); do
         pushd "${s}" > /dev/null
         # Only require the architecture to be explicitly listed for non x86_64 for now
         if [[ "${arch}" == "x86_64" ]]; then
