@@ -1,0 +1,13 @@
+name := "ghostty"
+packages := "ghostty"
+base_images := "
+quay.io/fedora-ostree-desktops/kinoite:42
+quay.io/fedora-ostree-desktops/sway-atomic:42
+"
+copr_repos := "pgdev/ghostty"
+enable_repos := "copr:copr.fedorainfracloud.org:pgdev:ghostty"
+
+
+import '../sysext.just'
+
+all: default

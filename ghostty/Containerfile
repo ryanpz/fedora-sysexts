@@ -1,0 +1,8 @@
+FROM baseimage
+
+RUN <<EORUN
+set -xeuo pipefail
+dnf copr enable -y pgdev/ghostty
+dnf install -y ghostty
+dnf clean all
+EORUN

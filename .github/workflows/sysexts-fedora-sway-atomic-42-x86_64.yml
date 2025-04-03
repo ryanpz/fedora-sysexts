@@ -108,6 +108,36 @@ jobs:
           just build ${IMAGE} ${ARCH}
           mv "${SYSEXT}"*".raw" "../artifacts/"
 
+      - name: "Build sysext: fzf"
+        env:
+          SYSEXT: fzf
+        run: |
+          cd "${SYSEXT}"
+          if [[ "${PR}" == "true" ]]; then
+              diff="$(git diff origin/main HEAD --stat -- . ; git diff origin/main HEAD --stat -- ../sysext.just)"
+              if [[ -z "${diff}" ]]; then
+                  echo "Skipping: No changes for this sysext in this PR"
+                  exit 0
+              fi
+          fi
+          just build ${IMAGE} ${ARCH}
+          mv "${SYSEXT}"*".raw" "../artifacts/"
+
+      - name: "Build sysext: ghostty"
+        env:
+          SYSEXT: ghostty
+        run: |
+          cd "${SYSEXT}"
+          if [[ "${PR}" == "true" ]]; then
+              diff="$(git diff origin/main HEAD --stat -- . ; git diff origin/main HEAD --stat -- ../sysext.just)"
+              if [[ -z "${diff}" ]]; then
+                  echo "Skipping: No changes for this sysext in this PR"
+                  exit 0
+              fi
+          fi
+          just build ${IMAGE} ${ARCH}
+          mv "${SYSEXT}"*".raw" "../artifacts/"
+
       - name: "Build sysext: git-tools"
         env:
           SYSEXT: git-tools
@@ -213,9 +243,39 @@ jobs:
           just build ${IMAGE} ${ARCH}
           mv "${SYSEXT}"*".raw" "../artifacts/"
 
+      - name: "Build sysext: source-foundry-hack-fonts"
+        env:
+          SYSEXT: source-foundry-hack-fonts
+        run: |
+          cd "${SYSEXT}"
+          if [[ "${PR}" == "true" ]]; then
+              diff="$(git diff origin/main HEAD --stat -- . ; git diff origin/main HEAD --stat -- ../sysext.just)"
+              if [[ -z "${diff}" ]]; then
+                  echo "Skipping: No changes for this sysext in this PR"
+                  exit 0
+              fi
+          fi
+          just build ${IMAGE} ${ARCH}
+          mv "${SYSEXT}"*".raw" "../artifacts/"
+
       - name: "Build sysext: vim"
         env:
           SYSEXT: vim
+        run: |
+          cd "${SYSEXT}"
+          if [[ "${PR}" == "true" ]]; then
+              diff="$(git diff origin/main HEAD --stat -- . ; git diff origin/main HEAD --stat -- ../sysext.just)"
+              if [[ -z "${diff}" ]]; then
+                  echo "Skipping: No changes for this sysext in this PR"
+                  exit 0
+              fi
+          fi
+          just build ${IMAGE} ${ARCH}
+          mv "${SYSEXT}"*".raw" "../artifacts/"
+
+      - name: "Build sysext: wl-clipboard"
+        env:
+          SYSEXT: wl-clipboard
         run: |
           cd "${SYSEXT}"
           if [[ "${PR}" == "true" ]]; then
