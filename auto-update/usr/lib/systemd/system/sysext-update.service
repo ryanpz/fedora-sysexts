@@ -1,0 +1,12 @@
+[Unit]
+Description=systemd-sysext Automatic Update
+Wants=network-online.target
+After=network-online.target
+StartLimitIntervalSec=20m
+StartLimitBurst=5
+
+[Service]
+Type=oneshot
+ExecStart=/usr/lib/systemd/systemd-sysupdate update ; systemctl restart systemd-sysext.service
+Restart=on-failure
+RestartSec=2m

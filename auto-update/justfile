@@ -1,0 +1,14 @@
+name := "auto-update"
+files := "usr etc"
+upholds := "
+flatpak-system-update.timer
+sysext-update.timer
+"
+base_images := "
+quay.io/fedora-ostree-desktops/kinoite:42
+quay.io/fedora-ostree-desktops/sway-atomic:42
+"
+
+import '../sysext.just'
+
+all: default
