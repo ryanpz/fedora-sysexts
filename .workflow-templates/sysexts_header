@@ -15,7 +15,7 @@ on:
       - main
   push:
     branches:
-      - main
+      - ryanpz-sysexts
   schedule:
     - cron:  '0 0 * * MON'
   workflow_dispatch:
@@ -61,4 +61,4 @@ jobs:
       - name: "Mark directory as safe"
         run: |
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
-          git fetch --no-tags --prune --depth=1 origin +refs/heads/main:refs/remotes/origin/main
+          git fetch --no-tags --prune --depth=1 origin +refs/heads/ryanpz-sysexts:refs/remotes/origin/ryanpz-sysexts
