@@ -1,11 +1,14 @@
 [Unit]
+Description=Apply bootc updates
+Documentation=man:bootc(8)
+ConditionPathExists=/run/ostree-booted
 Wants=network-online.target
 After=network-online.target
 StartLimitIntervalSec=20m
 StartLimitBurst=5
 
 [Service]
+Type=oneshot
+ExecStart=/usr/bin/bootc update --quiet
 Restart=on-failure
 RestartSec=2m
-ExecStart=
-ExecStart=/usr/bin/bootc update --quiet

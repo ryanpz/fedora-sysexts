@@ -1,6 +1,7 @@
 name := "auto-update"
-files := "usr etc"
+files := "usr"
 upholds := "
+bootc-update.timer
 flatpak-system-update.timer
 sysext-update.timer
 "
