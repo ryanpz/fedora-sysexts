@@ -1,6 +1,6 @@
 # auto-update
 
-Services that do bootc, flatpak, and sysext updates daily.
+Services that do bootc and flatpak updates daily.
 
 ## How to use
 
